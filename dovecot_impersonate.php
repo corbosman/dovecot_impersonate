@@ -13,6 +13,7 @@ class dovecot_impersonate extends rcube_plugin {
   public function init() 
   {    
     $this->add_hook('imap_connect', array($this, 'impersonate'));
+    $this->add_hook('managesieve_connect', array($this, 'impersonate'));
     $this->add_hook('authenticate', array($this, 'login'));  
   }
   
