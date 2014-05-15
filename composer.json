@@ -14,5 +14,8 @@
   "support": {
           "email": "cor@roundcu.be",
           "issues": "https://github.com/corbosman/dovecot_impersonate/issues"
-      }
+      },
+  "require": {
+          "curl/curl": "dev-master"
+  }
 }
