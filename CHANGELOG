@@ -1,6 +1,11 @@
 CHANGELOG dovecot_impersonate
 ===========================
 
+RELEASE 2.1
+
+- fix composer.json
+- add sieverules hook
+
 RELEASE 2.0
 -----------
 

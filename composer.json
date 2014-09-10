@@ -3,6 +3,7 @@
   "description":"lets you impersonate another user using the dovecot master user feature",
   "license":"GPL-2.0",
   "homepage":"https://github.com/corbosman/dovecot_impersonate",
+  "type": "roundcube-plugin",
   "authors": [
           {
               "name": "Cor Bosman",
