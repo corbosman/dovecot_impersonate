@@ -7,4 +7,7 @@
 
 $rcmail_config['dovecot_impersonate_seperator'] = '*';
 
-?>
+// call a script everytime an account is impersonated
+$rcmail_config['dovecot_impersonate_notify'] =
+  '/usr/local/bin/master-user-report.pl --remote-ip={{REMOTE_ADDR}} --server-ip={{SERVER_ADDR}} --master="{{MASTER}}" --account="{{ACCOUNT}}"';
+
