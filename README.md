@@ -17,6 +17,10 @@ Password: password_of_master
 
 The plugin then strips the master info from the form, so all preferences are correctly fetched for the user. (else it would try to find preferences for user*master). If you use any other plugins that use the authenticate hook, you might want to make this plugin the first plugin.
 
+CUSTOM NOTIFICATIONS
+--------------------
+
+You can also run a custom script everytime the impersonate is run, for instance to notify administrator accounts, or send alerts to another email address. See the notify-example folder. To avoid the script being called every time the user refresh the session - and keep the session opened, use imapproxy.
 
 OLD VERSIONS
 ------------
