@@ -16,6 +16,7 @@ class dovecot_impersonate extends rcube_plugin {
     $this->add_hook('managesieve_connect', array($this, 'impersonate'));
     $this->add_hook('authenticate', array($this, 'login'));  
     $this->add_hook('sieverules_connect', array($this, 'impersonate_sieve'));  
+    $this->add_hook('smtp_connect', array($this, 'impersonate_smtp'));  
   }
   
   function login($data) {
@@ -48,6 +49,31 @@ class dovecot_impersonate extends rcube_plugin {
     }
     return($data);
   }
-  
+
+  /**
+   *
+   * This function will use the dovecot master username as the smtp_user if
+   * the SMTP login is done using the roundcube username and password.
+   *
+   * If the configuration is adjusted this way the smtp server is probably
+   * authenticating users against dovecot and we need to pass the right
+   * username to make sure that passwords match.
+   *
+   * If the configuration is not using dovecot to authenticate we are not
+   * breaking anything either, as the smtp server will not be able to
+   * authenticate the user anyway (we are passing the master password
+   * instead of the user password).
+   *
+   */
+
+  function impersonate_smtp($data) {
+    if(isset($_SESSION['plugin.dovecot_impersonate_master'])) {
+      if ($data['smtp_user'] == '%u' and $data['smtp_pass'] == '%p') {
+        $rcube = rcube::get_instance();
+        $data['smtp_user'] = $rcube->get_user_name() . $_SESSION['plugin.dovecot_impersonate_master']; 
+      }
+    }
+    return($data);
+  }
 }
 ?>
